@@ -1,6 +1,7 @@
 import axios from 'axios';
 import baseURL from './baseUrl';
 
+// axios实例
 const request = axios.create({
   baseURL: baseURL,
   timeout: 5000,
