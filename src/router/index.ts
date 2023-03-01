@@ -26,4 +26,13 @@ const router = createRouter({
   history: createWebHashHistory(),
 });
 
+// 路由守卫导航
+router.beforeEach((to, from) => {
+  const token = localStorage.getItem('token');
+  if (to.path !== '/login' && !token) {
+    console.log('error');
+    return '/login';
+  }
+});
+
 export default router;

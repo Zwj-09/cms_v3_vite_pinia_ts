@@ -1,13 +1,40 @@
 <template>
-  <div>Main Page</div>
+  <div class="main">
+    <el-container class="container">
+      <el-aside width="240px">
+        <MainMenu />
+      </el-aside>
+      <el-container>
+        <el-header>
+          <el-button @click="loginout">退出登录</el-button>
+        </el-header>
+        <el-main>Main</el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <script setup lang="ts">
-import request from '@/config/request';
-
-request.get('/home/multidata').then((res) => {
-  console.log('res', res);
-});
+import { useRouter } from 'vue-router';
+import MainMenu from '@/components/Menu/menu.vue';
+let router = useRouter();
+const loginout = () => {
+  localStorage.removeItem('token');
+  router.push('/login');
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+.main {
+  height: 100%;
+  .container {
+    height: 100%;
+  }
+  .el-main,
+  .el-aside,
+  .el-header {
+    padding: 0;
+    margin: 0;
+  }
+}
+</style>
