@@ -5,6 +5,9 @@
       :index="menu.url"
     >
       <template #title>
+        <el-icon>
+          <component :is="menu.icon ? menu.icon.split('-icon-')[1] : ''" />
+        </el-icon>
         <span>{{ menu.name }}</span>
       </template>
 

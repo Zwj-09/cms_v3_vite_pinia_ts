@@ -1,26 +1,29 @@
 <template>
   <div class="main">
     <el-container class="container">
-      <el-aside width="240px">
-        <MainMenu />
+      <el-aside :width="isCollapse ? '50px' : '210px'">
+        <MainMenu :isCollapse="isCollapse" />
       </el-aside>
       <el-container>
         <el-header>
-          <el-button @click="loginout">退出登录</el-button>
+          <head-page @handleChangeCollapse="handleChangeCollapse" />
         </el-header>
-        <el-main>Main</el-main>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
 import MainMenu from '@/components/Menu/menu.vue';
-let router = useRouter();
-const loginout = () => {
-  localStorage.removeItem('token');
-  router.push('/login');
+import HeadPage from '@/components/Head/head.vue';
+import { ref } from 'vue';
+
+let isCollapse = ref(false);
+const handleChangeCollapse = (val: boolean) => {
+  isCollapse.value = val;
 };
 </script>
 
@@ -35,6 +38,23 @@ const loginout = () => {
   .el-header {
     padding: 0;
     margin: 0;
+  }
+  .el-aside {
+    transition: all 0.3s linear;
+    overflow-x: hidden;
+    overflow-y: auto;
+    line-height: 200px;
+    text-align: left;
+    cursor: pointer;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .el-header {
+    height: 80px;
+    background-color: red;
   }
 }
 </style>
