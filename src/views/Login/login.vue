@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <img class="left" src="../../assets/images/login/person.svg" alt="" />
     <el-form
       class="form"
       ref="formRef"
@@ -24,7 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { login } from '@/api/login/login';
 import useLogin from '@/store/login/login';
 import { ref, reactive } from 'vue';
 let useLoginStore = useLogin();
@@ -56,11 +56,15 @@ let submit = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: greenyellow;
-  background: url('@/assets/images/login_bg.jpg');
+  background: url('@/assets/images/login/bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  .left {
+    width: 600px;
+    height: 700px;
+    margin-right: 70px;
+  }
   .form {
     width: 600px;
     height: 300px;
